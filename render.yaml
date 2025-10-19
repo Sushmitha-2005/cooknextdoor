@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: cooknextdoor-backend
+    env: node
+    buildCommand: npm run build
+    startCommand: npm run start:prod
+    port: 10000
+    autoDeploy: false
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        generateValue: true
+      - key: PORT
+        value: 10000
+
+  - type: pserv
+    name: cooknextdoor-database
+    env: mongodb
+    databaseName: cooknextdoor
+    ipAllowList: [] # Only accessible by other services in same project
