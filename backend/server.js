@@ -14,9 +14,11 @@ app.use(bodyParser.json());
 const MONGODB_URI = process.env.MONGODB_URI || process.env.DATABASE_URL || 'mongodb://127.0.0.1:27017/cooknextdoor';
 mongoose.connect(MONGODB_URI, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 5000,
+    socketTimeoutMS: 45000,
 })
-.then(() => console.log('MongoDB connected'))
+.then(() => console.log('MongoDB connected successfully'))
 .catch(err => console.log('MongoDB connection error:', err));
 
 // Serve static files from Angular build
@@ -32,7 +34,8 @@ app.get('/api/health', (req, res) => {
 });
 
 // Catch all handler: send back Angular's index.html file for client-side routing
-app.get('*', (req, res) => {
+// This must be the last route
+app.use((req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/dist/frontend/browser/index.html'));
 });
 
