@@ -1,0 +1,19 @@
+{
+  "name": "cooknextdoor",
+  "version": "1.0.0",
+  "description": "Full-stack food delivery application",
+  "scripts": {
+    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
+    "start:backend": "cd backend && npm start",
+    "start:frontend": "cd frontend && npm start",
+    "install:all": "npm run install:backend && npm run install:frontend",
+    "install:backend": "cd backend && npm install",
+    "install:frontend": "cd frontend && npm install"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  },
+  "keywords": ["food-delivery", "angular", "nodejs", "express"],
+  "author": "",
+  "license": "ISC"
+}
