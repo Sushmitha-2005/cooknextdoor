@@ -15,4 +15,3 @@ services:
     name: cooknextdoor-database
     env: mongodb
     databaseName: cooknextdoor
-    ipAllowList: []
