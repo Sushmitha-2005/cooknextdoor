@@ -2,7 +2,7 @@ services:
   - type: web
     name: cooknextdoor-backend
     runtime: node
-    buildCommand: npm run build:frontend && npm run build:backend
+    buildCommand: npm run build
     startCommand: npm run start:prod
     envVars:
       - key: NODE_ENV
