@@ -11,7 +11,7 @@ services:
         value: 10000
     healthCheckPath: /
 
-  - type: pserv
+  - type: mongodb
     name: cooknextdoor-database
-    env: mongodb
     databaseName: cooknextdoor
+    ipAllowList: []  # Only accessible by other services in the same blueprint
