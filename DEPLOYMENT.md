@@ -22,13 +22,13 @@ This guide explains how to deploy your CookNextDoor food delivery application to
 
 The `render.yaml` file defines two services:
 
-- **Web Service** (`cooknextdoor-backend`): Node.js application
+- **Web Service** (`cooknextdoor-frontend`): Angular SSR application with integrated API
 - **Database** (`cooknextdoor-database`): MongoDB database
 
 #### 3. Environment Variables
 
 Render will automatically generate:
-- `MONGODB_URI`: Connection string for the database
+`MONGODB_URI`: Connection string for the database
 
 #### 4. Deploy
 
@@ -36,33 +36,28 @@ Render will automatically generate:
 2. Render will start building and deploying your application
 3. Once complete, you'll get a `.onrender.com` URL
 
-### Project Structure
-
-```
 cooknextdoor/
-├── backend/                 # Node.js/Express server
-│   ├── server.js           # Updated for production
-│   ├── models/             # MongoDB models
-│   └── routes/             # API routes
-├── frontend/               # Angular application
+├── frontend/               # Angular SSR application
+│   ├── src/server.ts       # SSR server with API routes
+│   ├── src/app/            # Angular components and models
 │   └── dist/               # Built production files
+├── backend/                # Legacy backend (no longer used in production)
 ├── render.yaml             # Render deployment config
 ├── package.json            # Updated build scripts
-└── .env.example           # Environment variables template
-```
+└── .env.example
 
 ### Build Process
 
-1. **Install Dependencies**: Both frontend and backend dependencies
-2. **Build Frontend**: Angular production build
-3. **Start Backend**: Serves both API and static files
+1. **Install Dependencies**: Frontend dependencies including mongoose
+2. **Build Frontend**: Angular SSR production build
+3. **Start Frontend SSR**: Serves both API and rendered Angular application
 
 ### Local Development vs Production
 
 | Aspect | Local Development | Production (Render) |
 |--------|------------------|-------------------|
-| Frontend | `ng serve` (port 4200) | Static files served by backend |
-| Backend | `node server.js` (port 5000) | `npm run start:prod` (port 10000) |
+| Frontend | `ng serve` (port 4200) | SSR server (port 10000) |
+| Backend | `node server.js` (port 5000) | Integrated in SSR server |
 | Database | Local MongoDB | Render MongoDB service |
 | Environment | Development | Production |
 
@@ -70,7 +65,7 @@ cooknextdoor/
 
 - **Health Check**: `https://your-app.onrender.com/api/health`
 - **API Routes**: `https://your-app.onrender.com/api/*`
-- **Frontend**: `https://your-app.onrender.com/*`
+- **Frontend**: `https://your-app.onrender.com/*` (SSR rendered)
 
 ### Troubleshooting
 

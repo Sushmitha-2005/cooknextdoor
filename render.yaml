@@ -1,15 +1,15 @@
 services:
   - type: web
-    name: cooknextdoor-backend
+    name: cooknextdoor-frontend
     runtime: node
-    buildCommand: npm run build
-    startCommand: npm run start:prod
+    buildCommand: cd frontend && npm install && npm run build
+    startCommand: cd frontend && npm run serve:ssr:frontend
     envVars:
       - key: NODE_ENV
         value: production
       - key: PORT
         value: 10000
-    healthCheckPath: /
+    healthCheckPath: /api/health
 
   - type: mongodb
     name: cooknextdoor-database
