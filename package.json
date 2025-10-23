@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "Full-stack food delivery application",
   "scripts": {
-    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
+    "start": "cd frontend && yarn serve:ssr:frontend",
     "start:backend": "cd backend && npm start",
     "start:frontend": "cd frontend && npm start",
-    "start:prod": "cd backend && npm start",
+    "start:prod": "cd frontend && yarn serve:ssr:frontend",
     "build": "npm run install:all && npm run build:frontend",
     "build:frontend": "cd frontend && npm install && npm run build",
     "build:backend": "cd backend && npm run build",
