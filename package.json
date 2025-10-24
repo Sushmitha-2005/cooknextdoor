@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Full-stack food delivery application",
   "scripts": {
-    "start": "cd frontend && yarn serve:ssr:frontend",
+    "start": "cd frontend && npx tsx src/server.ts",
     "start:backend": "cd backend && npm start",
     "start:frontend": "cd frontend && npm start",
     "start:prod": "cd frontend && yarn serve:ssr:frontend",
